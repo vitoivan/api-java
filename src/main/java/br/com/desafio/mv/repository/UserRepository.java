@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import br.com.desafio.mv.models.Breakfast;
 import br.com.desafio.mv.models.User;
 
 public interface  UserRepository extends JpaRepository<User, Long>{
@@ -16,4 +17,7 @@ public interface  UserRepository extends JpaRepository<User, Long>{
 	
 	@Query(value = "SELECT * from users WHERE cpf = :cpf", nativeQuery = true)
 	public Optional<User> login(@Param("cpf") String cpf);
+	
+	@Query(value = "SELECT * FROM users WHERE id = :id", nativeQuery = true)
+	public User getOne(@Param("id") Long id);
 }
