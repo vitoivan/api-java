@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -28,6 +29,7 @@ public class BreakfastController {
 	@Autowired
 	private BreakfastRepository breakfastRepository;
 	
+	@CrossOrigin
 	@PostMapping("")
 	public ResponseEntity<?> register(@RequestBody Breakfast breakfast) {
 		try {
@@ -40,11 +42,13 @@ public class BreakfastController {
 		}
 	}
 	
+	@CrossOrigin
 	@GetMapping("")
 	public ArrayList<Breakfast> getAll(){
 		return breakfastRepository.getAll();
 	}
 	
+	@CrossOrigin
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getOne(@PathVariable("id") Long id){
 		Breakfast item = breakfastRepository.getOne(id);
@@ -55,6 +59,7 @@ public class BreakfastController {
 		return new ResponseEntity<Breakfast>(item, HttpStatus.OK);
 	}
 	
+	@CrossOrigin
 	@PatchMapping("/{id}")
 	public ResponseEntity<?> updateOne(@PathVariable("id") Long id, @RequestBody BreakfastPatch breakfast){
 		try {
@@ -70,7 +75,7 @@ public class BreakfastController {
 		}
 	}
 	
-	
+	@CrossOrigin
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteOne(@PathVariable("id") Long id){
 		Breakfast deleted = breakfastRepository.deleteOne(id);
